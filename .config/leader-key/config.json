@@ -7,6 +7,12 @@
       "value" : "/Applications/Raycast.app"
     },
     {
+      "key" : "e",
+      "label" : "Home directory",
+      "type" : "folder",
+      "value" : "/Users/michaelnguyen"
+    },
+    {
       "key" : "t",
       "label" : "",
       "type" : "application",
@@ -22,19 +28,80 @@
       "key" : "b",
       "label" : "",
       "type" : "application",
-      "value" : "/Applications/Zen Browser.app"
+      "value" : "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
     },
     {
       "key" : "m",
       "label" : "",
       "type" : "application",
-      "value" : "/Applications/Spotify.app"
+      "value" : "/System/Applications/Messages.app"
     },
     {
-      "key" : "e",
+      "key" : "f",
       "label" : "",
-      "type" : "folder",
-      "value" : "/Users/michaelnguyen"
+      "type" : "application",
+      "value" : "/System/Applications/FaceTime.app"
+    },
+    {
+      "key" : "c",
+      "label" : "",
+      "type" : "application",
+      "value" : "/Applications/BusyCal.app"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "b",
+          "label" : "Balance sizes",
+          "type" : "command",
+          "value" : "/opt/homebrew/bin/aerospace balance-sizes"
+        },
+        {
+          "key" : "t",
+          "label" : "Toggle float/tile",
+          "type" : "command",
+          "value" : "/opt/homebrew/bin/aerospace layout floating tiling"
+        },
+        {
+          "key" : "a",
+          "label" : "Reload config",
+          "type" : "command",
+          "value" : "/opt/homebrew/bin/aerospace reload-config"
+        },
+        {
+          "key" : "x",
+          "label" : "Close other windows",
+          "type" : "command",
+          "value" : "/opt/homebrew/bin/aerospace close-all-windows-but-current"
+        },
+        {
+          "key" : "-",
+          "label" : "Horizontal layout",
+          "type" : "command",
+          "value" : "/opt/homebrew/bin/aerospace layout tiles horizontal"
+        },
+        {
+          "key" : "_",
+          "label" : "Vertical layout",
+          "type" : "command",
+          "value" : "/opt/homebrew/bin/aerospace layout tiles vertical"
+        },
+        {
+          "key" : "1",
+          "label" : "All windows to WS 1",
+          "type" : "command",
+          "value" : "/opt/homebrew/bin/aerospace list-windows --all --format %{window-id} | xargs -I{} /opt/homebrew/bin/aerospace move-node-to-workspace --window-id {} 1"
+        }
+      ],
+      "key" : "w",
+      "label" : "Window",
+      "type" : "group"
+    },
+    {
+      "key" : "s",
+      "label" : "",
+      "type" : "application",
+      "value" : "/Applications/Spotify.app"
     }
   ],
   "type" : "group"

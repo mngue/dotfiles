@@ -9,8 +9,9 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
-
+after-startup-command = [
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+]
 # Start AeroSpace at login
 start-at-login = true
 
@@ -56,10 +57,11 @@ automatically-unhide-macos-hidden-apps = false
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
-#[workspace-to-monitor-force-assignment]
-#    1 = 'main'                         # Monitor sequence number from left to right. 1-based indexing
-#    2 = 'secondary'                      # Main monitor
-#    3 = 'built-in'                  # Non-main monitor in case when there are only two monitors
+[workspace-to-monitor-force-assignment]
+    1 = 'main'                         # Monitor sequence number from left to right. 1-based indexing
+    2 = 'secondary'                      # Main monitor
+    4 = 'built-in'                  # Non-main monitor in case when there are only two monitors
+    5 = 'LG'                  # Non-main monitor in case when there are only two monitors
 
 
 [gaps]

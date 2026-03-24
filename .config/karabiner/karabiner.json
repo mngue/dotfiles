@@ -4,24 +4,20 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Akimbo cmd to F12",
+                        "description": "Tap Caps Lock for ESC or Hold for Control",
                         "manipulators": [
                             {
                                 "from": {
-                                    "simultaneous": [
-                                        { "key_code": "left_command" },
-                                        { "key_code": "right_command" }
-                                    ],
-                                    "simultaneous_options": {
-                                        "to_after_key_up": [
-                                            {
-                                                "key_code": "f12",
-                                                "modifiers": ["fn"]
-                                            }
-                                        ]
-                                    }
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [{ "key_code": "vk_none" }],
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
                                 "type": "basic"
                             }
                         ]
@@ -41,6 +37,29 @@
                                     }
                                 ],
                                 "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Akimbo cmd to F12",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        { "key_code": "left_command" },
+                                        { "key_code": "right_command" }
+                                    ],
+                                    "simultaneous_options": {
+                                        "to_after_key_up": [
+                                            {
+                                                "key_code": "f12",
+                                                "modifiers": ["fn"]
+                                            }
+                                        ]
+                                    }
+                                },
+                                "to": [{ "key_code": "vk_none" }],
                                 "type": "basic"
                             }
                         ]

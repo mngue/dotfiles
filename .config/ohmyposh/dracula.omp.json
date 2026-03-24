@@ -16,7 +16,7 @@
           "background": "#bd93f9",
           "foreground": "#f8f8f2",
           "powerline_symbol": "\ue0b0",
-          "properties": {
+          "options": {
             "folder_icon": "..\ue5fe..",
             "home_icon": "~",
             "style": "full"
@@ -29,7 +29,7 @@
           "background": "#ffb86c",
           "foreground": "#494D64",
           "powerline_symbol": "\ue0b0",
-          "properties": {
+          "options": {
             "branch_icon": "\ue725 ",
             "cherry_pick_icon": "\ue29b ",
             "commit_icon": "\uf417 ",
@@ -46,17 +46,9 @@
           "type": "git"
         },
         {
-          "background": "#8be9fd",
-          "foreground": "#494D64",
-          "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
-          "type": "node"
-        },
-        {
           "background": "#ff79c6",
           "foreground": "#f8f8f2",
-          "properties": {
+          "options": {
             "time_format": "15:04"
           },
           "style": "diamond",
@@ -72,17 +64,16 @@
       "segments": [
         {
           "type": "kubectl",
-          "style": "powerline",
-          "powerline_symbol": "",
-          "foreground": "#000000",
-          "background": "#ebcc34",
-          "template": "{{.User}}",
-          "properties": {
+          "style": "diamond",
+          "leading_diamond": "\ue0b2",
+          "trailing_diamond": "",
+          "foreground": "#FFFFFF",
+          "background": "#4770DE",
+          "template": " 󱃾 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} ",
+          "options": {
             "context_aliases": {
-              "arn:aws-us-gov:eks:us-gov-west-1:415473649360:cluster/dev-precert": "dev-precert",
-              "arn:aws-us-gov:eks:us-gov-west-1:415473649360:cluster/qa-precert": "qa-precert",
-              "arn:aws-us-gov:eks:us-gov-west-1:415473649360:cluster/stage-precert": "stage-precert",
-              "arn:aws-us-gov:eks:us-gov-west-1:415473649360:cluster/prod-precert": "prod-precert"
+              "arn:aws:eks:us-east-1:557690603200:cluster/rpt-dev": "rpt-dev",
+              "arn:aws:eks:us-east-1:557690603200:cluster/rpt-demo": "rpt-demo"
             }
           }
         },
@@ -93,33 +84,36 @@
           "foreground": "#81ff91",
           "template": "<#cc7eda> \u007C </><#7eb8da>\ue71e </> {{.WorkspaceName}}"
         },
-
         {
-          "foreground": "#81ff91",
-          "properties": {
-            "fetch_version": true
-          },
+          "background": "#759F69",
+          "foreground": "#F4F8EE",
+          "powerline_symbol": "\ue0b0",
           "style": "powerline",
-          "template": "<#cc7eda> \u007C </><#7eb8da>\ue718</> {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
+          "template": " \ued0d {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
           "type": "node"
         },
         {
-          "type": "sysinfo",
+          "type": "python",
           "style": "powerline",
-          "foreground": "#81ff91",
-          "template": "<> </>"
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffd43b",
+          "background": "#306998",
+          "options": {
+            "display_mode": "always"
+          },
+          "template": " \ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
         },
         {
           "background": "#cecece",
           "foreground": "#4b4b4b",
-          "leading_diamond": "\ue0b2",
-          "trailing_diamond": "\ue0b0",
-          "properties": {
+          "trailing_diamond": "\ue0b4",
+          "options": {
             "style": "austin",
-            "threshold": 150
+            "threshold": 150,
+            "always_enabled": true
           },
           "style": "diamond",
-          "template": "⌛  {{ .FormattedMs }} ",
+          "template": " \uf017 {{ .FormattedMs }}",
           "type": "executiontime"
         }
       ],

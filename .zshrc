@@ -53,7 +53,6 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Keybindings
-bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey -r '\eh'
@@ -68,76 +67,10 @@ alias grsoft="git reset --soft HEAD^"
 alias grhard="git reset --hard HEAD^"
 alias lsa="ls -lahA --color"
 alias ls="ls --color"
-alias da="direnv allow"
 alias hg="history | grep"
 alias eg="env | grep"
-alias kube="kubectl"
 alias c='clear'
-# this goes with awsp function
-if [ -f $HOME/.aws/.env ]; then
-  export $(cat ~/.aws/.env | xargs)
-fi
-
-function awsp() {
-  	if [[ -d $HOME/.aws ]] && [[ -f $HOME/.aws/config ]]; then
-		case $# in
-		1)
-      PFF=$(grep "profile" $HOME/.aws/config | sed 's/\[profile \(.*\)\]/\1/' | grep $1)
-      if [ -z "$PFF" ]; then
-        echo "Unknow profile $1"
-        unset AWS_DEFAULT_PROFILE && unset AWS_PROFILE
-        exit 1
-      fi
-      unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_SESSION_TOKEN && unset AWS_PROMPT
-      export AWS_DEFAULT_PROFILE=$1
-      export AWS_PROFILE=$1
-      echo "AWS CLI Profile: $1"
-      ;;
-		2)
-			unset AWS_ACCESS_KEY_ID && unset AWS_SECRET_ACCESS_KEY && unset AWS_SESSION_TOKEN && unset AWS_DEFAULT_PROFILE && unset AWS_PROFILE && unset AWS_REGION && unset AWS_DEFAULT_REGION
-			export AWS_DEFAULT_PROFILE=$1
-			export AWS_PROFILE=$1
-			if [ -z "$1" ]; then
-				echo "No MFA device. Make sure your local CLI profile and/or MFA device in AWS Console are configured."
-				return
-			fi
-
-			MFA_DEVICE=$(aws iam list-mfa-devices | jq -r '.MFADevices|first.SerialNumber')
-			echo "Found device: $MFA_DEVICE"
-			echo ''
-			echo 'MFA Token: '
-			read MFA_TOKEN
-			echo "Entered token: $MFA_TOKEN"
-			MFA_SESSION=$(aws sts get-session-token --serial-number $MFA_DEVICE --token-code $MFA_TOKEN --duration-seconds 43200)
-			unset AWS_DEFAULT_PROFILE && unset AWS_PROFILE
-
-			echo '' > ~/.aws/.env
-
-			AWS_ACCESS_KEY_ID=$(echo $MFA_SESSION | jq -r '.Credentials.AccessKeyId')
-			echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> ~/.aws/.env
-
-			AWS_SECRET_ACCESS_KEY=$(echo $MFA_SESSION | jq -r '.Credentials.SecretAccessKey')
-			echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/.env
-
-			AWS_SESSION_TOKEN=$(echo $MFA_SESSION | jq -r '.Credentials.SessionToken')
-			echo "AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN" >> ~/.aws/.env
-
-			AWS_REGION=$(aws configure get region --profile $1)
-			echo "AWS_REGION=$AWS_REGION" >> ~/.aws/.env
-
-			AWS_DEFAULT_REGION=$(aws configure get region --profile $1)
-			echo "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION" >> ~/.aws/.env
-
-			export $(cat ~/.aws/.env | xargs)
-			;;
-		*)
-			grep "profile" $HOME/.aws/config | sed 's/\[profile \(.*\)\]/\1/'
-			;;
-		esac
-	else
-		echo "AWS CLI is not configured on this machine!"
-	fi
-}
+alias szsh='source ~/.zshrc'
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -147,33 +80,16 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# UV
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 export PATH="$HOME/.bin:$PATH"
 
-system_type=$(uname -s)
-if [ "$system_type" = "Darwin" ]; then
-  . $(brew --prefix asdf)/libexec/asdf.sh
-elif [ "$system_type" = "Linux" ]; then
-  # Brew for linux
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  # asdf
-   . $(brew --prefix asdf)/libexec/asdf.sh
-fi
-
+# Shell integrations
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  # eval "$(oh-my-posh init zsh --config=~/.config/ohmyposh/catpuccin.omp.json)"
   eval "$(oh-my-posh init zsh --config=~/.config/ohmyposh/dracula.omp.json)"
 fi
 
-# Shell integrations
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+eval "$(zoxide init zsh)"
+eval "$(mise activate zsh)"
