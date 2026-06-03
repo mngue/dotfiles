@@ -1,2 +1,2 @@
-theme = Gruvbox Material
+theme = Catppuccin Mocha
 shell-integration-features = ssh-env,ssh-terminfo

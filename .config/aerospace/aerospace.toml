@@ -59,10 +59,7 @@ automatically-unhide-macos-hidden-apps = false
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
     1 = 'main'                         # Monitor sequence number from left to right. 1-based indexing
-    2 = 'secondary'                      # Main monitor
-    4 = 'built-in'                  # Non-main monitor in case when there are only two monitors
-    5 = 'LG'                  # Non-main monitor in case when there are only two monitors
-
+    4 = ['built-in', 'secondary', 'LG'] 
 
 [gaps]
     inner.horizontal = 3

@@ -98,9 +98,6 @@
           "powerline_symbol": "\ue0b0",
           "foreground": "#ffd43b",
           "background": "#306998",
-          "options": {
-            "display_mode": "always"
-          },
           "template": " \ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
         },
         {

@@ -75,16 +75,10 @@
           "value" : "/opt/homebrew/bin/aerospace close-all-windows-but-current"
         },
         {
-          "key" : "-",
-          "label" : "Horizontal layout",
+          "key" : "n",
+          "label" : "Move workspace to next monitor",
           "type" : "command",
-          "value" : "/opt/homebrew/bin/aerospace layout tiles horizontal"
-        },
-        {
-          "key" : "_",
-          "label" : "Vertical layout",
-          "type" : "command",
-          "value" : "/opt/homebrew/bin/aerospace layout tiles vertical"
+          "value" : "/opt/homebrew/bin/aerospace move-workspace-to-monitor --wrap-around next"
         },
         {
           "key" : "1",

@@ -1,19 +1,19 @@
 return {
   {
     "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "kanagawa",
-      -- colorscheme = "gruvbox-material",
-    },
+    opts = function()
+      local state_file = vim.fn.stdpath("config") .. "/.colorscheme"
+      local file = io.open(state_file, "r")
+      local saved = file and file:read("*l")
+      if file then file:close() end
+      return { colorscheme = (saved and saved ~= "") and saved or "kanagawa" }
+    end,
   },
   { "catppuccin/nvim", name = "catppuccin" },
   {
     "sainnhe/gruvbox-material",
     config = function()
-      -- Optionally configure and load the colorscheme
-      -- directly inside the plugin declaration.
       vim.g.gruvbox_material_background = "hard"
-      vim.cmd.colorscheme("gruvbox-material")
     end,
   },
   { "ellisonleao/gruvbox.nvim" },
@@ -21,4 +21,14 @@ return {
     "AlexvZyl/nordic.nvim",
   },
   { "rebelot/kanagawa.nvim" },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
+  {
+    "tiagovla/tokyodark.nvim",
+    opts = {
+      -- custom options here
+    },
+  },
 }

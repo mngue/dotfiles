@@ -93,3 +93,6 @@ fi
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
+
+# Prevent pip installs outside of a virtualenv
+export PIP_REQUIRE_VIRTUALENV=1
