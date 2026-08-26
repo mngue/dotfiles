@@ -5,7 +5,9 @@ return {
       local state_file = vim.fn.stdpath("config") .. "/.colorscheme"
       local file = io.open(state_file, "r")
       local saved = file and file:read("*l")
-      if file then file:close() end
+      if file then
+        file:close()
+      end
       return { colorscheme = (saved and saved ~= "") and saved or "kanagawa" }
     end,
   },
@@ -30,5 +32,9 @@ return {
     opts = {
       -- custom options here
     },
+  },
+  {
+    "everviolet/nvim",
+    name = "evergarden",
   },
 }

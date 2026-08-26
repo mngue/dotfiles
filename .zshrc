@@ -84,7 +84,6 @@ esac
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 export PATH="$HOME/.bin:$PATH"
-
 # Shell integrations
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config=~/.config/ohmyposh/dracula.omp.json)"

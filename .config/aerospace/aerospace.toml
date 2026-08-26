@@ -1,3 +1,4 @@
+config-version = 2
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
@@ -58,9 +59,9 @@ automatically-unhide-macos-hidden-apps = false
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
-    1 = 'main'                         # Monitor sequence number from left to right. 1-based indexing
-    4 = ['built-in', 'secondary', 'LG'] 
-
+    1 = 1                            # Monitor sequence number from left to right. 1-based indexing
+    2 = 'main'                       # Main monitor
+    3 = 'secondary'                  # Non-main monitor in case when there are only two monitors
 [gaps]
     inner.horizontal = 3
     inner.vertical =   3
