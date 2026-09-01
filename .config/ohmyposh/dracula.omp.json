@@ -5,44 +5,37 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#6272a4",
-          "foreground": "#f8f8f2",
-          "leading_diamond": "\ue0b6",
-          "style": "diamond",
-          "template": "{{ .UserName }} ",
-          "type": "session"
-        },
-        {
           "background": "#bd93f9",
           "foreground": "#f8f8f2",
-          "powerline_symbol": "\ue0b0",
+          "leading_diamond": "",
+          "trailing_diamond": "",
           "options": {
-            "folder_icon": "..\ue5fe..",
+            "folder_icon": "....",
             "home_icon": "~",
             "style": "full"
           },
-          "style": "powerline",
+          "style": "diamond",
           "template": " {{ .Path }} ",
           "type": "path"
         },
         {
           "background": "#ffb86c",
           "foreground": "#494D64",
-          "powerline_symbol": "\ue0b0",
+          "powerline_symbol": "",
           "options": {
-            "branch_icon": "\ue725 ",
-            "cherry_pick_icon": "\ue29b ",
-            "commit_icon": "\uf417 ",
+            "branch_icon": " ",
+            "cherry_pick_icon": " ",
+            "commit_icon": " ",
             "fetch_status": false,
             "fetch_upstream_icon": false,
-            "merge_icon": "\ue727 ",
-            "no_commits_icon": "\uf0c3 ",
-            "rebase_icon": "\ue728 ",
-            "revert_icon": "\uf0e2 ",
-            "tag_icon": "\uf412 "
+            "merge_icon": " ",
+            "no_commits_icon": " ",
+            "rebase_icon": " ",
+            "revert_icon": " ",
+            "tag_icon": " "
           },
           "style": "powerline",
-          "template": " \ue725 ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}) ",
+          "template": "  ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}) ",
           "type": "git"
         },
         {
@@ -52,8 +45,8 @@
             "time_format": "15:04"
           },
           "style": "diamond",
-          "template": " \u2665 {{ .CurrentDate | date .Format }} ",
-          "trailing_diamond": "\ue0b0",
+          "template": " ♥ {{ .CurrentDate | date .Format }} ",
+          "trailing_diamond": "",
           "type": "time"
         }
       ],
@@ -65,7 +58,7 @@
         {
           "type": "kubectl",
           "style": "diamond",
-          "leading_diamond": "\ue0b2",
+          "leading_diamond": "",
           "trailing_diamond": "",
           "foreground": "#FFFFFF",
           "background": "#4770DE",
@@ -78,39 +71,34 @@
           }
         },
         {
-          "type": "terraform",
-          "style": "powerline",
-          "powerline_symbol": "",
-          "foreground": "#81ff91",
-          "template": "<#cc7eda> \u007C </><#7eb8da>\ue71e </> {{.WorkspaceName}}"
-        },
-        {
           "background": "#759F69",
           "foreground": "#F4F8EE",
-          "powerline_symbol": "\ue0b0",
+          "powerline_symbol": "",
           "style": "powerline",
-          "template": " \ued0d {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "template": "{{ if .Full }}  {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} {{ end }}",
           "type": "node"
         },
         {
           "type": "python",
           "style": "powerline",
-          "powerline_symbol": "\ue0b0",
+          "powerline_symbol": "",
           "foreground": "#ffd43b",
           "background": "#306998",
-          "template": " \ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
+          "options": {
+            "display_mode": "always"
+          },
+          "template": "  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
         },
         {
           "background": "#cecece",
           "foreground": "#4b4b4b",
-          "trailing_diamond": "\ue0b4",
+          "trailing_diamond": "",
           "options": {
             "style": "austin",
-            "threshold": 150,
-            "always_enabled": true
+            "threshold": 150
           },
           "style": "diamond",
-          "template": " \uf017 {{ .FormattedMs }}",
+          "template": "  {{ .FormattedMs }}",
           "type": "executiontime"
         }
       ],
@@ -123,24 +111,23 @@
         {
           "foreground": "#cd5e42",
           "style": "plain",
-          "template": "\ue3bf ",
+          "template": " ",
           "type": "root"
         },
         {
           "foreground": "#CD4277",
           "style": "plain",
-          "template": "<#F5BDE6>\u276f</>",
+          "template": "<#F5BDE6>❯</>",
           "type": "text"
         }
       ],
       "type": "prompt"
     }
   ],
-
   "transient_prompt": {
     "background": "transparent",
     "foreground": "#FEF5ED",
-    "template": "<#F5BDE6>\u276f </>"
+    "template": "<#F5BDE6>❯ </>"
   },
   "final_space": true,
   "version": 3

@@ -2,14 +2,16 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here are
 
+-- Persist colorscheme across sessions
 vim.api.nvim_create_autocmd("ColorScheme", {
-  callback = function(args)
-    local name = args.match
-    if not name or name == "" then return end
-    local file = io.open(vim.fn.stdpath("config") .. "/.colorscheme", "w")
-    if file then
-      file:write(name)
-      file:close()
+  callback = function()
+    local colorscheme = vim.g.colors_name
+    if colorscheme then
+      local file = io.open(vim.fn.stdpath("data") .. "/colorscheme.txt", "w")
+      if file then
+        file:write(colorscheme)
+        file:close()
+      end
     end
   end,
 })
