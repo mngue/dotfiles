@@ -95,3 +95,6 @@ eval "$(mise activate zsh)"
 
 # Prevent pip installs outside of a virtualenv
 export PIP_REQUIRE_VIRTUALENV=1
+
+# opencode
+export PATH=/Users/michaelnguyen/.opencode/bin:$PATH

@@ -494,15 +494,22 @@ set -g status-justify "absolute-centre"
 set -wg automatic-rename on
 set -g automatic-rename-format "Window"
 
-set -g window-status-format " #I#{?#{!=:#{window_name},Window},: #W,} "
-set -g window-status-style "fg=#{@thm_rosewater}"
-set -g window-status-last-style "fg=#{@thm_peach}"
-set -g window-status-activity-style "bg=#{@thm_red},fg=#{@thm_bg}"
-set -g window-status-bell-style "bg=#{@thm_red},fg=#{@thm_bg},bold"
+# Claude Code panes report a bare version string as their command: the native
+# install runs ~/.local/share/claude/versions/<version>, and macOS reports the
+# resolved binary name. SessionStart/SessionEnd hooks in ~/.claude/settings.json
+# set @is_claude on the pane; the version/name patterns are the fallback for
+# panes whose claude was started before those hooks existed.
+set -g @claude_pane "#{||:#{@is_claude},#{||:#{m:[0-9]*.[0-9]*.[0-9]*,#{pane_current_command}},#{m:claude*,#{pane_current_command}}}}"
+
+set -g window-status-format " #I#{?#{E:@claude_pane},: ✳ claude,#{?#{!=:#{window_name},Window},: #W,}} "
+set -g window-status-style "fg=#{@thm_subtext_0}"
+set -g window-status-last-style "fg=#{@thm_lavender}"
+set -g window-status-activity-style "bg=#{@thm_yellow},fg=#{@thm_bg}"
+set -g window-status-bell-style "bg=#{@thm_yellow},fg=#{@thm_bg},bold"
 set -gF window-status-separator "#[fg=#{@thm_overlay_0}]│"
 
-set -g window-status-current-format " #I#{?#{!=:#{window_name},Window},: #W,} "
-set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
+set -g window-status-current-format " #I#{?#{E:@claude_pane},: ✳ claude,#{?#{!=:#{window_name},Window},: #W,}} "
+set -g window-status-current-style "bg=#{@thm_blue},fg=#{@thm_bg},bold"
 
 # -- custom variables ----------------------------------------------------------
 
