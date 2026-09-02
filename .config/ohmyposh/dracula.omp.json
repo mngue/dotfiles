@@ -6,7 +6,7 @@
       "segments": [
         {
           "background": "#bd93f9",
-          "foreground": "#f8f8f2",
+          "foreground": "#E9EDF5",
           "leading_diamond": "",
           "trailing_diamond": "",
           "options": {
@@ -15,38 +15,36 @@
             "style": "full"
           },
           "style": "diamond",
-          "template": " {{ .Path }} ",
+          "template": "{{ .Path }} ",
           "type": "path"
         },
         {
-          "background": "#ffb86c",
-          "foreground": "#494D64",
-          "powerline_symbol": "",
+          "background": "#1C63C7",
+          "foreground": "#E9EDF5",
+          "trailing_diamond": "",
+          "style": "diamond",
           "options": {
-            "branch_icon": " ",
-            "cherry_pick_icon": " ",
+            "branch_icon": "  ",
+            "cherry_pick_icon": "  ",
             "commit_icon": " ",
-            "fetch_status": false,
-            "fetch_upstream_icon": false,
             "merge_icon": " ",
             "no_commits_icon": " ",
             "rebase_icon": " ",
             "revert_icon": " ",
             "tag_icon": " "
           },
-          "style": "powerline",
-          "template": "  ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}) ",
+          "template": "{{ .HEAD }}{{ if gt .Ahead 0 }} ⇡{{ .Ahead }}{{ end }}{{ if gt .Behind 0 }} ⇣{{ .Behind }}{{ end }} ",
           "type": "git"
         },
         {
           "background": "#ff79c6",
-          "foreground": "#f8f8f2",
+          "foreground": "#E9EDF5",
           "options": {
-            "time_format": "15:04"
+            "time_format": "15:04 MST"
           },
+          "trailing_diamond": "",
           "style": "diamond",
-          "template": " ♥ {{ .CurrentDate | date .Format }} ",
-          "trailing_diamond": "",
+          "template": " ♥ {{ .CurrentDate | date .Format }}",
           "type": "time"
         }
       ],
@@ -57,26 +55,17 @@
       "segments": [
         {
           "type": "kubectl",
-          "style": "diamond",
-          "leading_diamond": "",
-          "trailing_diamond": "",
+          "style": "powerline",
+          "leading_powerline_symbol": "",
           "foreground": "#FFFFFF",
           "background": "#4770DE",
-          "template": " 󱃾 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} ",
+          "template": "󱃾 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} ",
           "options": {
             "context_aliases": {
               "arn:aws:eks:us-east-1:557690603200:cluster/rpt-dev": "rpt-dev",
               "arn:aws:eks:us-east-1:557690603200:cluster/rpt-demo": "rpt-demo"
             }
           }
-        },
-        {
-          "background": "#759F69",
-          "foreground": "#F4F8EE",
-          "powerline_symbol": "",
-          "style": "powerline",
-          "template": "{{ if .Full }}  {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} {{ end }}",
-          "type": "node"
         },
         {
           "type": "python",
