@@ -511,6 +511,15 @@ set -gF window-status-separator "#[fg=#{@thm_overlay_0}]│"
 set -g window-status-current-format " #I#{?#{E:@claude_pane},: ✳ claude,#{?#{!=:#{window_name},Window},: #W,}} "
 set -g window-status-current-style "bg=#{@thm_blue},fg=#{@thm_bg},bold"
 
+# pane borders: dim neutral for inactive, bright orange for the active pane
+set -g pane-border-lines "heavy"
+set -g pane-border-style "fg=#{@thm_surface_2}"
+set -g pane-active-border-style "fg=#{@thm_peach}"
+
+# pane title bar: bold orange label on the active pane, dim on the rest
+set -g pane-border-status top
+set -g pane-border-format "#[fg=#{?pane_active,#{@thm_peach},#{@thm_surface_2}},#{?pane_active,bold,nobold}] #{pane_index}: #{pane_current_command} "
+
 # -- custom variables ----------------------------------------------------------
 
 # to define a custom #{foo} variable, define a POSIX shell function between the
