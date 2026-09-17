@@ -16,3 +16,11 @@ vim.keymap.set("n", "gl", "$", { desc = "Go to last character in line" })
 vim.keymap.set("n", "yc", "yygccp", { remap = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Always search files from the directory nvim was launched in, regardless of
+-- the current buffer. Captured once at startup so it never drifts with the
+-- active buffer's LazyVim "root".
+local launch_cwd = vim.fn.getcwd()
+vim.keymap.set("n", "<leader><space>", function()
+  Snacks.picker.files({ cwd = launch_cwd })
+end, { desc = "Find Files (Launch Dir)" })

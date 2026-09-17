@@ -393,6 +393,17 @@ set -g prefix C-a
 bind C-a send-prefix
 bind-key L swap-window -t +1 \; next-window
 bind-key H swap-window -t -1 \; previous-window
+# pane navigation without repeat, so the prefix table doesn't stay active
+# and leak into nvim's C-h/C-j/C-k/C-l split navigation
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+# window navigation without repeat (override oh-my-tmux's -r bindings)
+bind C-h previous-window
+bind C-l next-window
+# quickly move to the next session (single key, repeatable)
+bind-key -r Tab switch-client -n
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
 
