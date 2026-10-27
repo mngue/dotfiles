@@ -103,3 +103,6 @@ export PIP_REQUIRE_VIRTUALENV=1
 
 # opencode
 export PATH=/Users/michaelnguyen/.opencode/bin:$PATH
+if [[ "$OSTYPE" == linux* ]] && [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+fi
