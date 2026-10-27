@@ -399,6 +399,11 @@ bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
+# same for the arrow keys, which tmux binds with -r by default
+bind Up select-pane -U
+bind Down select-pane -D
+bind Left select-pane -L
+bind Right select-pane -R
 # window navigation without repeat (override oh-my-tmux's -r bindings)
 bind C-h previous-window
 bind C-l next-window

@@ -10,6 +10,10 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Put ~/.local/bin and mise tools on PATH before anything below needs them
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(mise activate zsh --shims)"
+
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -90,6 +94,7 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
 fi
 
 eval "$(fzf --zsh)"
+unalias zi 2>/dev/null   # zinit aliases zi; zoxide defines a zi function
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
 
